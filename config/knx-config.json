@@ -1,0 +1,14 @@
+{
+	"items": {
+		"d52f8e41-cd61-4b6b-a147-3581313bee19": {
+			"name": "Kitchen",
+			"switch_gad": "1/1/1",
+			"percentage_gad": "1/2/1"
+		},
+		"7a7111b1-c4dd-458a-b3f6-1fe959d09742": {
+			"name": "Livingroom",
+			"switch_gad": "1/1/2",
+			"percentage_gad": "1/2/2"
+		}
+	}
+}
