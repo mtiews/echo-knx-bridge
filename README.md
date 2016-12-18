@@ -19,12 +19,13 @@ By default the Web Server starts at Port 8080. This can be changed in the `serve
 
 
 1. Clone the repository
-2. Start the server using `node server.js`
-3. Go to http://[yourhost]:[yourport]/configui/
-4. Configure your KNX items
-5. Save the Items
-6. Let Amazon Echo discover your devices
-7. Start controlling your KNX Devices via Voice
+2. Run `npm install`
+3. Start the server using `node server.js`
+4. Go to http://[yourhost]:[yourport]/configui/
+5. Configure your KNX items
+6. Save the Items
+7. Let Amazon Echo discover your devices
+8. Start controlling your KNX Devices via Voice
 
 ## Important hints
 
