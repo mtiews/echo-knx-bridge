@@ -1,94 +1,94 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
-	<head>
-	  <meta charset="UTF-8">
-	  <title>Echo-KNX-Bridge Item Configuration</title>
-	  <link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.css">
-	  <link rel="stylesheet" type="text/css" href="custom.css">
-	  <script src="libs/angular/angular.js"></script>
-	  <script src="libs/angular/angular-resource.js"></script>
-	  <script src="libs/bootstrap-ui/ui-bootstrap-tpls-2.3.1.min.js"></script>
-	  <script src="main.js"></script>
-	</head>
-	<body>
-			<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-				<div class="container">
-					<div class="navbar-header">
-						<a class="navbar-brand" href="#">Echo-KNX-Bridge Item Configuration</a>
-					</div>
-				</div>
-			</nav>
-			
-			<div class="container">
-				<div class="container" ng-controller="ConfigCtrl">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">KNX Item Configuration</div>
+    <head>
+        <meta charset="UTF-8">
+        <title>Echo-KNX-Bridge Item Configuration</title>
+        <link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="custom.css">
+        <script src="libs/angular/angular.js"></script>
+        <script src="libs/angular/angular-resource.js"></script>
+        <script src="libs/bootstrap-ui/ui-bootstrap-tpls-2.3.1.min.js"></script>
+        <script src="main.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Echo-KNX-Bridge Item Configuration</a>
+                </div>
+            </div>
+        </nav>
+		
+        <div class="container">
+            <div class="container" ng-controller="ConfigCtrl">
+                <div class="panel panel-info">
+                    <div class="panel-heading">KNX Item Configuration</div>
                         <div class="panel-body">
-                            <p>
-                                Configuration of Items, which can be controlled via this Bridge.
-                            </p>
-                            <p>
-                                As this bridge emulates a Philips Hue Bridge, it only supports on/off and percentage values.
-                            </p>
-                            <p>
-                                If you change the Names or the IDs of these items, Amazon Echo has to rediscover the items, to "learn" their new names and identifiers.
-                            </p>
+                        <p>
+                            Configuration of Items, which can be controlled via this Bridge.
+                        </p>
+                        <p>
+                            As this bridge emulates a Philips Hue Bridge, it only supports on/off and percentage values.
+                        </p>
+                        <p>
+                            If you change the Names or the IDs of these items, Amazon Echo has to rediscover the items, to "learn" their new names and identifiers.
+                        </p>
                         </div>
-                    </div>
-					<div ng-repeat="(key, value) in config.items" class="panel panel-default">
-					  <div class="panel-heading">{{value.name}}</div>
-					  <div class="panel-body">
-					    <form name="item{{$index}}" class="form-horizontal">
-						    <div class="form-group" ng-class="{ 'has-error': item{{$index}}.name.$invalid }" >
-								<label for="name" class="col-sm-3 control-label">Name</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" name="name" ng-model="value.name" required uib-tooltip="Name of the Item, this name will be used for the Speech Commands."/>
-								</div>
-						    </div>
-						    <div class="form-group">
+                </div>
+                <div ng-repeat="(key, value) in config.items" class="panel panel-default">
+                    <div class="panel-heading">{{value.name}}</div>
+                    <div class="panel-body">
+                        <form name="item{{$index}}" class="form-horizontal">
+                            <div class="form-group" ng-class="{ 'has-error': item{{$index}}.name.$invalid }" >
+                                <label for="name" class="col-sm-3 control-label">Name</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" name="name" ng-model="value.name" required uib-tooltip="Name of the Item, this name will be used for the Speech Commands."/>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="id" class="col-sm-3 control-label">ID</label>
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" name="id" ng-model="key" readonly />
+                                <input type="text" class="form-control" name="id" ng-model="key" readonly />
                                 </div>
                             </div>
                             <div class="form-group" ng-class="{ 'has-error': item{{$index}}.switch_gad.$invalid }" >
-								<label for="switch_gad" class="col-sm-3 control-label">On/Off KNX Group Address</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" name="switch_gad" ng-model="value.switch_gad"uib-tooltip="KNX Group Address for On/Off value (KNX Value: 0 or 1, DPT1.001). Leave empty, if Percentage is not supported for this item."/>
-								</div>
-						    </div>
-						    <div class="form-group" ng-class="{ 'has-error': item{{$index}}.percentage_gad.$invalid }" >
-								<label for="percentage_gad" class="col-sm-3 control-label">Percentage KNX Group Address</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" name="percentage_gad" ng-model="value.percentage_gad" uib-tooltip="KNX Group Address for Percentage value (Percentage: 0% - 100%, KNX Value: 0 - 254, DPT5.005). Leave empty, if On/Off is not supported for this item."/>
-								</div>
-						    </div>
-						    <span class="pull-right">
-						    <button type="button" class="btn btn-danger navbar-btn" ng-disabled="!isDirty || !isValid" ng-click="deleteItem(key,value.name)">Delete Item</button>
-						    </span>
-						  </form>
-					  </div>
-					</div>
-					<div class="container">	
-						<span class="pull-right">
+                                <label for="switch_gad" class="col-sm-3 control-label">On/Off KNX Group Address</label>
+                                <div class="col-sm-5">
+                                <input type="text" class="form-control" name="switch_gad" ng-model="value.switch_gad"uib-tooltip="KNX Group Address for On/Off value (KNX Value: 0 or 1, DPT1.001). Leave empty, if Percentage is not supported for this item."/>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error': item{{$index}}.percentage_gad.$invalid }" >
+                                <label for="percentage_gad" class="col-sm-3 control-label">Percentage KNX Group Address</label>
+                                <div class="col-sm-5">
+                                <input type="text" class="form-control" name="percentage_gad" ng-model="value.percentage_gad" uib-tooltip="KNX Group Address for Percentage value (Percentage: 0% - 100%, KNX Value: 0 - 254, DPT5.005). Leave empty, if On/Off is not supported for this item."/>
+                                </div>
+                            </div>
+                            <span class="pull-right">
+                                <button type="button" class="btn btn-danger navbar-btn" ng-disabled="!isDirty || !isValid" ng-click="deleteItem(key,value.name)">Delete Item</button>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+                <div class="container">	
+                    <span class="pull-right">
                         <button type="button" class="btn btn-default navbar-btn" ng-click="createNewItem()">Create New Item</button>
-							<button type="button" class="btn btn-primary navbar-btn" ng-disabled="!isDirty || !isValid" ng-click="saveItems()">Save Items</button>
-						</span>
-					</div>
-				</div>
-			</div>
+                        <button type="button" class="btn btn-primary navbar-btn" ng-disabled="!isDirty || !isValid" ng-click="saveItems()">Save Items</button>
+                    </span>
+                </div>
+            </div>
+        </div>
 
-            <script type="text/ng-template" id="yesno.html">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="modal-title">{{$ctrl.title}}</h3>
-                </div>
-                <div class="modal-body" id="modal-body">
-                    {{$ctrl.message}}
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
-                    <button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">Cancel</button>
-                </div>
-            </script>
-	</body>
+        <script type="text/ng-template" id="yesno.html">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">{{$ctrl.title}}</h3>
+            </div>
+            <div class="modal-body" id="modal-body">
+                {{$ctrl.message}}
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+            </div>
+        </script>
+    </body>
 </html>
